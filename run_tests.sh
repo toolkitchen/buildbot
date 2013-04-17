@@ -1,3 +1,4 @@
+#!/bin/bash
 xvfb grunt test-buildbot
 rc=$?
 echo "@@@STEP_CURSOR test@@@"
