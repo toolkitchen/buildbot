@@ -6,11 +6,11 @@ https://chromium.googlesource.com/chromium/tools/build/"""
 def GetSteps(api, _factory_properties, build_properties):
   steps = api.Steps(build_properties)
   return [
-    steps.step('print-env',
-               ['buildbot/print_env.sh'],
+    steps.step('mktmp',
+               ['mkdir', '.tmp'],
                cwd=api.checkout_path()),
     steps.step('update-install',
-               ['npm', 'install'],
+               ['npm', 'install', '--tmp', '.tmp'],
                cwd=api.checkout_path()),
     steps.step('test',
                ['buildbot/run_tests.sh'],
