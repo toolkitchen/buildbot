@@ -1,5 +1,5 @@
 #!/bin/bash
-xvfb grunt test-buildbot
+xvfb-run grunt test-buildbot
 rc=$?
 echo "@@@STEP_CURSOR test@@@"
 if [ "x$rc" != "x0"]; then
