@@ -7,9 +7,6 @@ import sys
 
 def GetSteps(api, _factory_properties, build_properties):
   steps = api.Steps(build_properties)
-  test_cmd = ['grunt', 'test-buildbot']
-  if sys.platform.startswith('linux2'):
-    test_cmd = ['xvfb-run'] + test_cmd
   return [
     steps.step('mktmp',
                ['mkdir', '.tmp'],
@@ -18,6 +15,6 @@ def GetSteps(api, _factory_properties, build_properties):
                ['npm', 'install', '--tmp', '.tmp'],
                cwd=api.checkout_path()),
     steps.step('test',
-               test_cmd,
+               'run_tests.sh',
                cwd=api.checkout_path()),
   ]
