@@ -3,8 +3,6 @@
 For more information, see scripts/slave/annotated_run.py in
 https://chromium.googlesource.com/chromium/tools/build/"""
 
-import sys
-
 def GetSteps(api, _factory_properties, build_properties):
   steps = api.Steps(build_properties)
   return [
@@ -15,6 +13,6 @@ def GetSteps(api, _factory_properties, build_properties):
                ['npm', 'install', '--tmp', '.tmp'],
                cwd=api.checkout_path()),
     steps.step('test',
-               'run_tests.sh',
+               ['buildbot/run_tests.sh'],
                cwd=api.checkout_path()),
   ]
